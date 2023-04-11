@@ -29,3 +29,6 @@ jobs:
         with:
           repository: iamdiegow/test
           ssh-key: ${{ secrets.TEST_DEPLOY_KEY }}
+
+      - name: LS files
+        run: ls -la
