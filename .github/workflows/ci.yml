@@ -34,7 +34,6 @@ jobs:
         with:
           repository: iamdiegow/test
           ssh-key: ${{ secrets.TEST_DEPLOY_KEY }}
-          path: test
 
       - uses: actions/setup-node@v3
         with:
