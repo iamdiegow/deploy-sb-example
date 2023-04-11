@@ -58,10 +58,10 @@ jobs:
       - name: git status
         run: git status
 
-      # - name: Commit file
-      #   run: |
-      #     git config --global user.email "github-actions@bot"
-      #     git config --global user.name "github-actions[bot]"
-      #     git add public/${{ github.ref_name }}
-      #     git commit -am "add storybook"
-      #     git push origin main
+      - name: Commit file
+        run: |
+          git config --global user.email "github-actions@bot"
+          git config --global user.name "github-actions[bot]"
+          git add .
+          git commit -am "add storybook"
+          git push origin main
