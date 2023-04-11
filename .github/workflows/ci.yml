@@ -35,6 +35,10 @@ jobs:
           repository: iamdiegow/test
           ssh-key: ${{ secrets.TEST_DEPLOY_KEY }}
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
       - uses: actions/download-artifact@v3
         id: download
         with:
@@ -42,11 +46,14 @@ jobs:
           path: tmp/${{ github.ref_name }}
 
       - name: Prepare Assets
-        run: npx zx deploy.mjs
+        run: node prepare-deploy.js
         env:
-          ARTIFACT_PATH: ${{ steps.download.outputs.download-path }}
+          STORYBOOK_PATH: ${{ steps.download.outputs.download-path }}
           REF_NAME: ${{ github.ref_name }}
           REF: ${{ github.ref }}
+
+      - name: ls public folder
+        run: ls public
 
       # - name: Commit file
       #   run: |
