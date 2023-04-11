@@ -3,6 +3,7 @@ run-name: ${{ github.actor }}
 on: [push]
 jobs:
   deploy:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,3 +20,12 @@ jobs:
 
       - name: Ls assets
         run: ls -la ./storybook-static
+
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Private Repository
+        uses: actions/checkout@v3
+        with:
+          repository: iamdiegow/test
+          ssh-key: ${{ secrets.TEST_DEPLOY_KEY }}
