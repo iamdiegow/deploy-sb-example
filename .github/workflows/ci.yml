@@ -36,19 +36,22 @@ jobs:
           ssh-key: ${{ secrets.TEST_DEPLOY_KEY }}
 
       - uses: actions/download-artifact@v3
+        id: download
         with:
           name: ${{ github.ref_name }}
-          path: public/${{ github.ref_name }}
+          path: tmp/${{ github.ref_name }}
 
-      - name: Ls files
-        run: |
-          ls public
-          ls public/${{ github.ref_name }}
+      - name: Prepare Assets
+        run: npx zx deploy.mjs
+        env:
+          ARTIFACT_PATH: ${{ steps.download.outputs.download-path }}
+          REF_NAME: ${{ github.ref_name }}
+          REF: ${{ github.ref }}
 
-      - name: Commit file
-        run: |
-          git config --global user.email "github-actions@bot"
-          git config --global user.name "github-actions[bot]"
-          git add public/${{ github.ref_name }}
-          git commit -am "add storybook"
-          git push origin main
+      # - name: Commit file
+      #   run: |
+      #     git config --global user.email "github-actions@bot"
+      #     git config --global user.name "github-actions[bot]"
+      #     git add public/${{ github.ref_name }}
+      #     git commit -am "add storybook"
+      #     git push origin main
