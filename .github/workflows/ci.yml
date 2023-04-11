@@ -32,3 +32,13 @@ jobs:
 
       - name: LS files
         run: ls -la
+
+      - name: Create file
+        run: echo test > test.txt
+
+      - name: Commit file
+        run: |
+          git checkout main
+          git add test.txt
+          git commit -am "new file"
+          git push origin main
