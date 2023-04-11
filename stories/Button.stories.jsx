@@ -8,7 +8,7 @@ function Button() {
         padding: 5,
       }}
     >
-      My Button
+      My Updated Button
     </button>
   );
 }
