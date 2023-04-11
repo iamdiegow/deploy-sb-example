@@ -1,0 +1,21 @@
+name: CI
+run-name: ${{ github.actor }}
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install Dependencies
+        run: npm install --production
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Ls assets
+        run: ls -la ./storybook-static
