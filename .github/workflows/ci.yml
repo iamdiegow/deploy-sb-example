@@ -1,6 +1,10 @@
 name: CI
 run-name: ${{ github.actor }}
-on: [pull_request, push]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -49,7 +53,7 @@ jobs:
         run: node prepare-deploy.js
         env:
           STORYBOOK_PATH: ${{ steps.download.outputs.download-path }}
-          REF_NAME: ${{ github.ref_name }}
+          REF: ${{ github.ref }}
           ACTOR: ${{ github.actor }}
 
       - name: git status
