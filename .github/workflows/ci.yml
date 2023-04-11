@@ -34,6 +34,7 @@ jobs:
         with:
           repository: iamdiegow/test
           ssh-key: ${{ secrets.TEST_DEPLOY_KEY }}
+          path: test
 
       - uses: actions/setup-node@v3
         with:
@@ -55,8 +56,8 @@ jobs:
           REF_NAME: ${{ github.ref_name }}
           REF: ${{ github.ref }}
 
-      - name: ls public folder
-        run: ls public
+      - name: git status
+        run: git status
 
       # - name: Commit file
       #   run: |
