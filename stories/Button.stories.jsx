@@ -8,7 +8,7 @@ function Button() {
         padding: 5,
       }}
     >
-      My Updated Button
+      Test PR Button
     </button>
   );
 }
