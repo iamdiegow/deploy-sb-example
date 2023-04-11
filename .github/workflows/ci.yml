@@ -17,12 +17,9 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
-      - name: Ls assets
-        run: ls -la ./storybook-static
-
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.ref_name }}
+          name: storybook
           path: ./storybook-static
 
   commit:
@@ -45,8 +42,8 @@ jobs:
       - uses: actions/download-artifact@v3
         id: download
         with:
-          name: ${{ github.ref_name }}
-          path: tmp/${{ github.ref_name }}
+          name: storybook
+          path: tmp/storybook
 
       - name: Prepare Assets
         run: node prepare-deploy.js
@@ -54,7 +51,6 @@ jobs:
           STORYBOOK_PATH: ${{ steps.download.outputs.download-path }}
           REF_NAME: ${{ github.ref_name }}
           ACTOR: ${{ github.actor }}
-          SHA: ${{ github.sha }}
 
       - name: git status
         run: git status
