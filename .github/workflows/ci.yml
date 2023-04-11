@@ -38,7 +38,8 @@ jobs:
 
       - name: Commit file
         run: |
-          git checkout main
+          git config --global user.email "github-actions@bot"
+          git config --global user.name "github-actions"
           git add test.txt
           git commit -am "new file"
           git push origin main
