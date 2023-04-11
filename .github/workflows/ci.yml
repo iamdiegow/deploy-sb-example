@@ -53,7 +53,8 @@ jobs:
         env:
           STORYBOOK_PATH: ${{ steps.download.outputs.download-path }}
           REF_NAME: ${{ github.ref_name }}
-          REF: ${{ github.ref }}
+          ACTOR: ${{ github.actor }}
+          SHA: ${{ github.sha }}
 
       - name: git status
         run: git status
@@ -63,5 +64,5 @@ jobs:
           git config --global user.email "github-actions@bot"
           git config --global user.name "github-actions[bot]"
           git add .
-          git commit -am "add storybook"
+          git commit -am "updates from ${{ github.actor }}/${{ github.sha }}"
           git push origin main
