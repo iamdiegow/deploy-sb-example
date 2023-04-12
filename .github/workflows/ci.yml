@@ -55,9 +55,11 @@ jobs:
           STORYBOOK_PATH: ${{ steps.download.outputs.download-path }}
           REF: ${{ github.ref }}
           ACTOR: ${{ github.actor }}
+          PULL_REQUEST_TITLE: ${{ github.event.pull_request.title }}
 
-      - name: git status
-        run: git status
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
 
       - name: Commit file
         run: |
