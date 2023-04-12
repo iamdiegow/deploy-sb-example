@@ -49,6 +49,10 @@ jobs:
           name: storybook
           path: tmp/storybook
 
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+
       - name: Prepare Assets
         run: node prepare-deploy.js
         env:
@@ -56,10 +60,7 @@ jobs:
           REF: ${{ github.ref }}
           ACTOR: ${{ github.actor }}
           PULL_REQUEST_TITLE: ${{ github.event.pull_request.title }}
-
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
+          PULL_REQUEST_URL: ${{ github.event.pull_request.html.href }}
 
       - name: Commit file
         run: |
