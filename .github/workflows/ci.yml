@@ -57,10 +57,6 @@ jobs:
         run: node prepare-deploy.js
         env:
           STORYBOOK_PATH: ${{ steps.download.outputs.download-path }}
-          REF: ${{ github.ref }}
-          ACTOR: ${{ github.actor }}
-          PULL_REQUEST_TITLE: ${{ github.event.pull_request.title }}
-          PULL_REQUEST_URL: ${{ github.event.pull_request._links.html.href }}
           GITHUB_CONTEXT: ${{ toJSON(github) }}
 
       - name: Commit file
