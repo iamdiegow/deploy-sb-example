@@ -61,7 +61,7 @@ jobs:
           ACTOR: ${{ github.actor }}
           PULL_REQUEST_TITLE: ${{ github.event.pull_request.title }}
           PULL_REQUEST_URL: ${{ github.event.pull_request._links.html.href }}
-          GITHUB_CONTEXT: ${{ github }}
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
 
       - name: Commit file
         run: |
