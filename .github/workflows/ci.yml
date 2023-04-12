@@ -67,5 +67,5 @@ jobs:
           git config --global user.email "github-actions@bot"
           git config --global user.name "github-actions[bot]"
           git add .
-          git commit -am "updates from ${{ github.actor }}/${{ github.sha }}"
+          git commit -am "updates from ${{ github.actor }}/${{ github.event.name == 'pull_request' && github.event.pull_request.head.sha ||  github.sha ) }}"
           git push origin main
