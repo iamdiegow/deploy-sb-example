@@ -60,7 +60,7 @@ jobs:
           REF: ${{ github.ref }}
           ACTOR: ${{ github.actor }}
           PULL_REQUEST_TITLE: ${{ github.event.pull_request.title }}
-          PULL_REQUEST_URL: ${{ github.event.pull_request.html.href }}
+          PULL_REQUEST_URL: ${{ github.event.pull_request._links.html.href }}
 
       - name: Commit file
         run: |
